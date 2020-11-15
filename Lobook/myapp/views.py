@@ -16,9 +16,10 @@ def register(request):
         b.bookid = len(Book.objects.order_by('-bookid'))+1
         b.createdAt = timezone.now()
         b.updatedAt = timezone.now()
-        b.deadline = datetime.today() + relativedelta(months=1)
+        b.deadline = datetime.today()
         b.isAvailable = False
-        b.purchaseDate = timezone.now()
+        b.producedby = "集英社"
+        # b.purchaseDate = timezone.now()
         book = BookForm(request.POST,instance=b)
         if book.is_valid():
             book

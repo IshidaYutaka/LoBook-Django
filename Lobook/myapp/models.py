@@ -11,16 +11,16 @@ from django.db import models
 
 
 class Book(models.Model):   
-    bookid = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_length=30)
-    updatedAt = models.DateTimeField(auto_now_add=True)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    purchaseDate = models.DateField
-    deadline = models.DateField
-    isAvailable = models.BooleanField
+    bookid = models.IntegerField('本番号',primary_key=True)
+    title = models.CharField('タイトル',max_length=100)
+    author = models.CharField('著者',max_length=30)
+    updatedAt = models.DateTimeField('更新日時',auto_now_add=True)
+    createdAt = models.DateTimeField('作成日',auto_now_add=True)
+    purchaseDate = models.DateTimeField('購入日',auto_now_add=True)
+    deadline = models.DateTimeField('貸出期限',auto_now_add=True)
+    isAvailable = models.BooleanField('貸出可否')
 
-    def all(self):
-        return self
+    def __str__(self):
+        return '<id:'+ self.bookid + ',' + self.title + ',' + self.author + '>'
 
 

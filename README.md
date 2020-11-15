@@ -2,13 +2,14 @@ LoBook-Django
 
 #サーバー起動
 python3 manage.py runserver
+pip3 install python-dateutil
 
 #アプリ作成
 python3 manage.py startapp myapp
 'myapp.apps.MyappConfig',
 を追加
 #DB セットアップ
-python3 manage.py migrate
+python3 manage.py migrate myapp
 
 #DB定義
 

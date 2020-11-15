@@ -1,0 +1,22 @@
+
+#list{
+    /* font-family:; */
+    margin: 0 auto;
+    background-color: aliceblue;
+    color:rgb(0, 0, 0);
+}
+
+table th {/*table内のthに対して*/
+    padding: 5px;/*上下左右10pxずつ*/
+    background: rgb(0, 0, 0);
+    color:#fff;
+  }
+  table td{/*table内のthに対して*/
+    padding: 5px;/*上下左右10pxずつ*/
+    /* background: #fff5e5; */
+  }
+
+  table {
+    border-collapse: collapse;
+    border: solid 2px #fff;/*表全体を線で囲う*/
+  }

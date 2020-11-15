@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+
 <title>LoBook</title>
 </head>
 <body>
@@ -10,10 +13,34 @@
         <p>ログイン</p>
     </div>
     <div class="pastel">
-        <h1>L♡Book</h1>
+        <h1><a href="/">L♡Book</a></h1>
         <h2>本を大切に管理するシステム</h2>
         <h2>一覧ページ</h2>
     </div>
+    <table border="1" id="list">
+        <tr>
+            <th>id</th>
+            <th>タイトル</th>
+            <th>著者</th>
+            <th>更新日時</th>
+            <th>作成日</th>
+            <th>購入日</th>
+            <th>貸出期限</th>
+            <th>貸出可能</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{ d.bookid }}</td>
+            <td>{{ d.title }}</td>
+            <td>{{ d.author }}</td>
+            <td>{{ d.updatedAt }}</td>
+            <td>{{ d.createdAt }}</td>
+            <td>{{ d.purchaseDate }}</td>
+            <td>{{ d.deadline }}</td>
+            <td>{{ d.isAvailable }}</td>
+        </tr>
+        {% endfor %}
+    </table>
     <footer class="footer">
         <small>© 2020 ishida yutaka.</small>
     </footer>

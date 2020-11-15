@@ -1,8 +1,8 @@
 *{
   font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
   line-height: 1.5;
-  margin-bottom: 25px;
-  color: #fff;
+  /* margin-bottom: 25px; */
+  /* color: #fff; */
   text-align: center;
 }
 .login p{
@@ -10,10 +10,12 @@
     margin-right: 8px;
 }
 body{
-    /*background: radial-gradient(#F2B9A1, #EA6264,);*/
-    /* background: linear-gradient(#05FBFF, #1E00FF); */
-    background: linear-gradient(-135deg, #E4A972, #9941D8) fixed;
+    /* background: radial-gradient(#F2B9A1, #EA6264) fixed; */
+    background: linear-gradient(-135deg,#1E00FF,#05FBFF) fixed;
+    /* background: linear-gradient(-135deg, #E4A972, #9941D8) fixed; */
+    
     background-size: cover;
+    color: #fff;
 }
 
 .header{
@@ -29,6 +31,7 @@ h2 {
     font:bold;
 }
 .contents{
+    
     margin:20px auto;
     /* height: 25%; */
     width:30%;
@@ -38,6 +41,7 @@ h2 {
 }
 
 .contents a {
+    color: #fff;
     display: block;
     position: absolute;
     top: 0;
@@ -62,3 +66,23 @@ footer {
     height: 120px; 
     padding: 50px 0;
   }
+
+.form_table *{
+    color: block !important;
+}
+
+input{
+    color: block !important;
+    vertical-align: middle;
+    border-radius: 4px;
+    border:none;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.c{
+    margin: 200px 0;
+}

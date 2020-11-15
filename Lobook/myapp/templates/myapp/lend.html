@@ -30,8 +30,7 @@
             <th>購入日</th>
             <th>貸出期限</th>
             <th>貸出可能</th>
-            <th>更新日時</th>
-            <th>作成日</th>
+            <th>本のレビュー</th>
             <th>操作</th>
         </tr>
         {% for d in data %}
@@ -51,20 +50,8 @@
             {% else %}
             <td>不可</td>
             {% endif %}
-            <td>{{ d.updatedAt }}</td>
-            <td>{{ d.createdAt }}</td>
-            <td>
-                <form action="/update" method="POST" class="u">
-                    {% csrf_token %}
-                    <input type="hidden" name="hidden" value="{{ d.bookid }}">
-                    <input class="button" type="submit" value="更新" name="更新">
-                </form>
-                <form action="/delete" method="POST" class="u">
-                    {% csrf_token %}
-                    <input type="hidden" name="hidden" value="{{ d.bookid }}">
-                    <input class="remove" type="submit" value="削除"　name="delete">
-                </form>
-            </td>
+            <td><a class="review" href="/">レビューページ</a></td>            
+            <td><input class="button" type="button" value="借りる"></td>
         </tr>
         {% endfor %}
     </table>

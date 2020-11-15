@@ -1,4 +1,18 @@
-
+.button{
+    margin:3px;
+    padding: 5px;
+    background: black;
+    color:#fff;
+}
+.remove{
+    margin:3px;
+    padding: 5px;
+    background: red;
+    color:#fff;
+}
+.nonaval{
+    background: rgb(125, 117, 245);
+}
 #list{
     /* font-family:; */
     margin: 0 auto;
@@ -19,4 +33,18 @@ table th {/*table内のthに対して*/
   table {
     border-collapse: collapse;
     border: solid 2px #fff;/*表全体を線で囲う*/
+  }
+  .query{
+      margin:20px;
+  }
+  input{
+      padding: 5px;
+  }
+
+  .review{
+      color:blue;
+  }
+  .u{
+      display: inline;
+      padding: 0px;
   }

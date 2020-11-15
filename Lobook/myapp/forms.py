@@ -5,4 +5,7 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['title','author','producedby','purchaseDate']
+        widgets = {
+            'purchaseDate': forms.SelectDateWidget
+        }
         #'purchaseDate'

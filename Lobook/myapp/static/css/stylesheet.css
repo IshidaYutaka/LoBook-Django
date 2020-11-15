@@ -86,3 +86,12 @@ a{
 .c{
     margin: 200px 0;
 }
+
+.form_book{
+    background: black;
+    margin:0 auto;
+    width: 50%;
+    border:1px solid #fff;
+    font-size: 25px;
+    padding:10px;
+}

@@ -13,16 +13,15 @@ def index(request):
 def register(request):
     if request.method == 'POST':
         b = Book()
-        b.bookid = len(Book.objects.order_by('-bookid'))+1
+        # b.bookid = 
         b.createdAt = timezone.now()
         b.updatedAt = timezone.now()
-        b.deadline = datetime.today()
-        b.isAvailable = False
-        b.producedby = "集英社"
+        b.deadline = timezone.now()
+        b.isAvailable = True
+        # b.producedby = "集英社"
         # b.purchaseDate = timezone.now()
         book = BookForm(request.POST,instance=b)
         if book.is_valid():
-            book
             book.save()
         else:
             print('ERROR FROM INVALID')

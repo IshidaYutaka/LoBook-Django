@@ -19,8 +19,24 @@
     <div class="form_book">
     <p>入力フォーム</p>
     <table class="form_table" style="margin: 0 auto;">
-        <form action="{% url 'register' %}" method="post">
-            {{ form.as_table }}
+        <form action="{% url 'edit' %}" method="post">
+            {% for d in data %}
+            <tbody>
+                <input type="hidden" name="hidden" value="{{ d.bookid }}">
+                <tr>
+                    <th><label for="id_title">タイトル:</label></th>
+                    <td><input type="text" name="title" maxlength="100" required="" id="id_title" value="{{d.title}}"></td>
+                </tr>
+                <tr>
+                    <th><label for="id_author">著者:</label></th>
+                    <td><input type="text" name="author" maxlength="30" required="" id="id_author" value="{{d.author}}"></td>
+                </tr>
+                <tr>
+                    <th><label for="id_producedby">出版社:</label></th>
+                    <td><input type="text" name="producedby" maxlength="30" required="" id="id_producedby" value="{{d.producedby}}"></td>
+                </tr>
+            </tbody>
+            {% endfor %}
             {% csrf_token %}
             <tr><td></td><td><input type="submit" value="click"></td></tr>
         </form>

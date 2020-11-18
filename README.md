@@ -34,3 +34,12 @@ TABLE review
 
 bookid:
 review:
+
+
+{% for d in data %}
+    <p>{{d.loginid}}</p>
+    <p>{{d.password}}</p>
+    <p>{{d.mail}}</p>
+{% endfor %}
+
+sqlite3 db.sqlite3 

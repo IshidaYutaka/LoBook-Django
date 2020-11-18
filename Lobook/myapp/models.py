@@ -24,4 +24,12 @@ class Book(models.Model):
     def __str__(self):
         return '<id:'+ self.bookid + ',' + self.title + ',' + self.author + '>'
 
+class Login(models.Model):   
+    id = models.IntegerField('id',primary_key=True)
+    Loginid = models.CharField('ログインID',max_length=10)
+    password = models.CharField('パスワード',max_length=10)
+    mail = models.CharField('メールアドレス',max_length=30)
+    def __str__(self):
+        return self.Loginid
+
 

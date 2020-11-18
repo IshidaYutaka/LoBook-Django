@@ -51,7 +51,18 @@
             <td>不可</td>
             {% endif %}
             <td><a class="review" href="/">レビューページ</a></td>            
-            <td><input class="button" type="button" value="借りる"></td>
+            <td>
+                <form action="/lend" method="POST" class="u">
+                    {% csrf_token %}
+                    <input type="hidden" name="hidden" value="{{ d.bookid }}">
+                    <input type="hidden" name="isAvailable" value="{{ d.isAvailable }}">
+                    {% if d.isAvailable is True %}
+                    <input class="button" type="submit" value="借りる" name="l">
+                    {% else %}
+                    <input class="button" type="submit" value="返却する" name="r">
+                    {% endif %}
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>

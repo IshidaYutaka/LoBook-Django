@@ -9,16 +9,58 @@ from .models import Login
 from datetime import datetime, date, timedelta
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
- 
+from django.contrib import messages
+
 
 # Create your views here.
+loginName = "ゲスト"
+
 def index(request):
-    return render(request, 'myapp/index.html', {})
+    n = name()
+    params = {
+        'form': LoginForm(),
+        'data': Login.objects.all(),
+        'name':n
+    }
+    if n == "ゲスト":
+        return render(request, 'myapp/login.html', params)
+    else:
+        print(n)
+        return render(request, 'myapp/index.html', params)
+    
+
+def name():
+    global loginName
+    if loginName == "ゲスト":
+        return "ゲスト"
+    else:
+        return loginName
+
+def signIn(name):
+    if name == "ゲスト":
+        return redirect(to='/login')
+    else:
+        print(name)
+        return
+
+def signOut(request):
+    global loginName
+    loginName = "ゲスト"
+    return redirect(to='/')
 
 def login(request):
+    global loginName
     if request.method == 'POST':
-        l = Login()
-        log = LoginForm(request.POST,instance=l)
+        _id = request.POST.get('Loginid')
+        p = request.POST.get('password')
+        l = Login.objects.get(Loginid=_id,password=p)
+        print(l,p)
+        if l.password == p:
+            loginName = _id
+            return redirect(to='/')
+        else:
+            message = "パスワード、またはログインIDが異なります"
+            return render(request, 'myapp/login.html', message)
     params = {
         'form': LoginForm(),
         'data': Login.objects.all()
@@ -44,6 +86,7 @@ def newlogin(request):
     return render(request, 'myapp/login_new.html', params)
 
 def lend(request):
+    n = name()
     if request.method == 'POST':
         bookid = request.POST.get('hidden')
         print(bookid)
@@ -62,11 +105,14 @@ def lend(request):
     else:
         data = Book.objects.all()
     params = {
-        'data': data
+        'data': data,
+        'name':n
     }
     return render(request, 'myapp/lend.html', params)
 
 def update(request):
+    n = name()
+    signIn(n)
     if request.method == 'POST':
         q = request.POST.get('hidden')
         i = int(q)
@@ -74,6 +120,7 @@ def update(request):
         params = {
             'data': data,
             'form': BookForm(),
+            'name':n
         }
         return render(request, 'myapp/update.html', params)
     return render(request, 'myapp/update.html', {})
@@ -90,14 +137,22 @@ def edit(request):
         producedby = request.POST.get('producedby'),
     )
     return redirect(to='/list')
+    
 def delete(request):
+    n = name()
+    signIn(n)
     if request.method == 'POST':
         q = request.POST.get('hidden')
         Book.objects.filter(bookid=q).delete()
         return redirect(to='/list')
-    return render(request, 'myapp/index.html', {})
+    params = {
+        'name':n
+    }
+    return render(request, 'myapp/index.html', params)
 
 def register(request):
+    n = name()
+    signIn(n)
     if request.method == 'POST':
         b = Book()
         b.bookid = len(Book.objects.order_by('-bookid'))+1
@@ -115,17 +170,21 @@ def register(request):
         return redirect(to='/')
     params = {
         'form': BookForm(),
+        'name':n
     }
     return render(request, 'myapp/register/register.html', params)
 
 def list(request):
+    n = name()
+    signIn(n)
     q_word = request.GET.get('query')
     if q_word:
         data = Book.objects.filter(Q(title__icontains=q_word) | Q(author__icontains=q_word))
     else:
         data = Book.objects.all()
     params = {
-        'data': data
+        'data': data,
+        'name':n
     }
     return render(request, 'myapp/list.html', params)
 

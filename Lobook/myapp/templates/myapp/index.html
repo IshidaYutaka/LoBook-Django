@@ -8,7 +8,11 @@
 </head>
 <body>
     <div class="login">
-        <a href="/login"><p>ログイン</p></a>
+        {% if name == "ゲスト" %}
+        <p>こんにちは、{{name}}さん</p><a href="/login"><p>ログイン</p></a>
+        {% else%}
+        <p>こんにちは、{{name}}さん</p><a href="/signOut"><p>ログアウト</p></a>
+        {% endif %}
     </div>
     <div class="pastel">
         <h1><a href="/">L♡Book</a></h1>

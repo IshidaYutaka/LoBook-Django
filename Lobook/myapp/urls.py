@@ -11,5 +11,5 @@ urlpatterns = [
     path('lend', views.lend, name='lend'),
     path('delete', views.delete, name='delete'),
     path('edit', views.edit, name='edit'),
-    
+    path('signOut',views.signOut,name='signOut'),
 ]

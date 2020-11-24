@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+<title>LoBook</title>
+</head>
+<body>
+    <div class="login">
+        {% if name == "ゲスト" %}
+        <p>こんにちは、{{name}}さん</p><a href="/login"><p>ログイン</p></a>
+        {% else%}
+        <p>こんにちは、{{name}}さん</p><a href="/signOut"><p>ログアウト</p></a>
+        {% endif %}
+    </div>
+    <div class="pastel">
+        <h1><a href="/">L♡Book</a></h1>
+        <h2>本を大切に管理するシステム</h2>
+        <h2>本の登録ページ</h2>
+    </div>
+    <div class="form_book">
+    <p>入力フォーム</p>
+    <table class="form_table" style="margin: 0 auto;">
+        <form action="{% url 'edit' %}" method="post">
+            {% for d in data %}
+            <tbody>
+                <input type="hidden" name="hidden" value="{{ d.bookid }}">
+                <tr>
+                    <th><label for="id_title">タイトル:</label></th>
+                    <td><input type="text" name="title" maxlength="100" required="" id="id_title" value="{{d.title}}"></td>
+                </tr>
+                <tr>
+                    <th><label for="id_author">著者:</label></th>
+                    <td><input type="text" name="author" maxlength="30" required="" id="id_author" value="{{d.author}}"></td>
+                </tr>
+                <tr>
+                    <th><label for="id_producedby">出版社:</label></th>
+                    <td><input type="text" name="producedby" maxlength="30" required="" id="id_producedby" value="{{d.producedby}}"></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% csrf_token %}
+            <tr><td></td><td><input type="submit" value="click"></td></tr>
+        </form>
+    </table>
+    </div>
+    <footer class="footer">
+        <small>© 2020 ishida yutaka.</small>
+    </footer>
+</body>
+</html>

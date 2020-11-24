@@ -8,12 +8,28 @@
 </head>
 <body>
     <div class="login">
-        <a href="/login"><p>ログイン</p></a>
+        {% if name == "ゲスト" %}
+        <p>こんにちは、{{name}}さん</p><a href="/login"><p>ログイン</p></a>
+        {% else%}
+        <p>こんにちは、{{name}}さん</p><a href="/signOut"><p>ログアウト</p></a>
+        {% endif %}
     </div>
     <div class="pastel">
-        <div class="header">
-            <h1>L♡Book</h1>
-            <h2>本を大切に管理するシステム</h2>
+        <h1><a href="/">L♡Book</a></h1>
+        <h2>本を大切に管理するシステム</h2>
+        <div class="c">
+            <div class="contents">
+                <a href="/lend"></a>
+                <div class="text">本を借りる・レビューする</div>
+            </div>
+            <div class="contents">
+                <a href="/register"></a>
+                <div class="text">本を登録する</div>
+            </div>
+            <div class="contents">
+                <a href="/list"></a>
+                <div class="text">本を更新する</div>
+            </div>
         </div>
         <div class="contents">
             <a href="/list"></a>

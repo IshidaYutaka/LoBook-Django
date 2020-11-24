@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,16 +13,15 @@
     <div class="pastel">
         <h1><a href="/">L♡Book</a></h1>
         <h2>本を大切に管理するシステム</h2>
-        <h2>ログインページ</h2>
+        <h2>新規登録</h2>
     </div>
     <table class="form_table" style="margin: 40px auto; padding: 10px; font-size: 20px;">
-        <form action="{% url 'login' %}" method="post">
+        <form action="{% url 'newlogin' %}" method="post">
             {{ form.as_table }}
             {% csrf_token %}
             <tr><td></td><td><input type="submit" value="click"></td></tr>
         </form>
     </table>
-    <h2 style="margin: 40px;"><a href="/newlogin">新規登録</a></h2>
     <footer class="footer">
         <small>© 2020 ishida yutaka.</small>
     </footer>

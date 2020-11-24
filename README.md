@@ -2,6 +2,8 @@ LoBook-Django
 
 #サーバー起動
 python3 manage.py runserver
+pip3 install python-dateutil
+pip3 install django-bootstrap-datepicker-plus
 
 #アプリ作成
 python3 manage.py startapp myapp
@@ -32,3 +34,12 @@ TABLE review
 
 bookid:
 review:
+
+
+{% for d in data %}
+    <p>{{d.loginid}}</p>
+    <p>{{d.password}}</p>
+    <p>{{d.mail}}</p>
+{% endfor %}
+
+sqlite3 db.sqlite3 

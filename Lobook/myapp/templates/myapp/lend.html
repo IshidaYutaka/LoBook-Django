@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+
 <title>LoBook</title>
 </head>
 <body>
@@ -14,7 +17,7 @@
         {% endif %}
     </div>
     <div class="pastel">
-        <h1>L♡Book</h1>
+        <h1><a href="/">L♡Book</a></h1>
         <h2>本を大切に管理するシステム</h2>
         <h2>一覧ページ</h2>
     </div>
@@ -31,8 +34,7 @@
             <th>購入日</th>
             <th>貸出期限</th>
             <th>貸出可能</th>
-            <th>更新日時</th>
-            <th>作成日</th>
+            <th>本のレビュー</th>
             <th>操作</th>
         </tr>
         {% for d in data %}
@@ -52,18 +54,17 @@
             {% else %}
             <td>不可</td>
             {% endif %}
-            <td>{{ d.updatedAt }}</td>
-            <td>{{ d.createdAt }}</td>
+            <td><a class="review" href="/">レビューページ</a></td>            
             <td>
-                <form action="/update" method="POST" class="u">
+                <form action="/lend" method="POST" class="u">
                     {% csrf_token %}
                     <input type="hidden" name="hidden" value="{{ d.bookid }}">
-                    <input class="button" type="submit" value="更新" name="更新">
-                </form>
-                <form action="/delete" method="POST" class="u">
-                    {% csrf_token %}
-                    <input type="hidden" name="hidden" value="{{ d.bookid }}">
-                    <input class="remove" type="submit" value="削除"　name="delete">
+                    <input type="hidden" name="isAvailable" value="{{ d.isAvailable }}">
+                    {% if d.isAvailable is True %}
+                    <input class="button" type="submit" value="借りる" name="l">
+                    {% else %}
+                    <input class="button" type="submit" value="返却する" name="r">
+                    {% endif %}
                 </form>
             </td>
         </tr>

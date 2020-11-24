@@ -87,16 +87,17 @@ def newlogin(request):
 
 def lend(request):
     n = name()
+    today = datetime.today()
     if request.method == 'POST':
         bookid = request.POST.get('hidden')
         print(bookid)
         isAv = request.POST.get('isAvailable')
         if isAv == "True":
             print("a")
-            Book.objects.filter(bookid=bookid).update(isAvailable = False)
+            Book.objects.filter(bookid=bookid).update(isAvailable = False,deadline = today + relativedelta(months=1))
         else:
             print(isAv)
-            Book.objects.filter(bookid=bookid).update(isAvailable = True)
+            Book.objects.filter(bookid=bookid).update(isAvailable = True,deadline = today + relativedelta(months=1))
         return redirect(to='/lend')
 
     q_word = request.GET.get('query')
